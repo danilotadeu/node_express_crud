@@ -9,8 +9,8 @@ describe('Deve testar a api rest /products', function() {
         const url = URL + `/products/create`;
         response = await RequestApiHelper.callApiPost(url,
             {
-                nome: 'Vitor Rampazzo',
-                ra: '987654321020202'
+                nome: 'Mesa',
+                preco: '987'
             }
         )
 
@@ -23,12 +23,12 @@ describe('Deve testar a api rest /products', function() {
 
         response = await RequestApiHelper.callApiGet(url)
 
-        assert.ok(response.data.length > 1)
+        assert.ok(response.data.length >= 1)
         assert.deepEqual(response.status, 200)
 
     })
 
-    it('deve listar os products por id /products', async () => {
+    it('deve listar os products por id /products/:id', async () => {
         const url = URL+`/products/${MOCK_ID}`;
 
         response = await RequestApiHelper.callApiGet(url)
@@ -37,12 +37,12 @@ describe('Deve testar a api rest /products', function() {
         assert.deepEqual(response.data._id, MOCK_ID)
     })
 
-    it('deve cadastrar um products /product', async () => {
+    it('deve cadastrar um products /product/create', async () => {
         const url = URL + `/products/create`;
         response = await RequestApiHelper.callApiPost(url,
             {
-                nome: 'Cris',
-                ra: '987654321'
+                nome: 'Cadeira',
+                preco: '9876'
             }
         )
 
@@ -51,13 +51,13 @@ describe('Deve testar a api rest /products', function() {
 
     })
 
-    it('deve atualizar um products /product', async () => {
+    it('deve atualizar um products /product/:id/update', async () => {
 
         const url = URL + `/products/${MOCK_ID}/update`;
         response = await RequestApiHelper.callApiPut(url,
             {
-                nome: 'Cristina',
-                ra: '987654321'
+                nome: 'Cadeira Reclinável',
+                preco: '987654321'
             }
         )
 
@@ -66,7 +66,7 @@ describe('Deve testar a api rest /products', function() {
 
     })
 
-    it('deve deletar um products /product', async () => {
+    it('deve deletar um products /product/:id/delete', async () => {
         const url = URL + `/products/${MOCK_ID}/delete`;
         response = await RequestApiHelper.callApiDelete(url)
 
@@ -74,5 +74,4 @@ describe('Deve testar a api rest /products', function() {
         assert.deepEqual(response.data, 'Deleted successfully!')
 
     })
-
 })

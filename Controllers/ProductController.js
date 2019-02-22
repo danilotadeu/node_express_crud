@@ -5,10 +5,10 @@ exports.test = function (req, res) {
 };
 
 exports.product_create = function (req, res) {
-    let product = new Product(
+    const product = new Product(
         {
             nome: req.body.nome,
-            ra: req.body.ra
+            preco: req.body.preco
         }
     );
 
@@ -25,7 +25,7 @@ exports.product_details = function (req, res) {
 };
 
 exports.product_update = function (req, res) {
-    Product.findByIdAndUpdate(req.params.id, { $set: req.body }, function (err, product) {
+    Product.findOneAndUpdate(req.params.id, { $set: req.body }, function (err, product) {
         res.send('Product udpated.');
     });
 };
@@ -37,7 +37,6 @@ exports.product_delete = function (req, res) {
 };
 
 exports.index = function (req, res) {
-
     Product.find({}, function (err, product) {
         res.send(product);
     })

@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let AlunoSchema = new Schema({
+const ProductSchema = new Schema({
     nome: {
         type: String,
         required: true,
         max: 100
     },
-    ra: {
+    preco: {
         type: Number,
         required: true
     }
 });
 
-module.exports = mongoose.model('alunos', AlunoSchema);
+module.exports = mongoose.model('products', ProductSchema);
