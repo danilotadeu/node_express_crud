@@ -1,4 +1,4 @@
-# node_express_crud
+# Node Express Crud
 first crud with express
 
 1. Run npm install
